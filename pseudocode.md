@@ -42,10 +42,10 @@ zipcode: "40390", // is it a zipcode?, what about user error?
 ## End
 
 # Functional
- Init() {
- steps 
- variables
- event listeners(click, pressing return, or a key change(called just change)) -> check user input
+ * Init() {
+ - steps 
+ - variables
+ - event listeners(click, pressing return, or a key change(called just change)) -> check user input
  
 
 }
@@ -55,7 +55,7 @@ function displayTemperature(num)
 //compute temperature based on num parameter
 
 }
-```javascript
+
 function fetchData() // our render function
 {
 //send the api key and user input to the api
@@ -68,17 +68,45 @@ function setState()
 
 }
 
-```javascript 
+
 function checkUserInput() 
 {
 // validate the user input to see if corrent
 // make sure the textfield provides the input
 //input length is 5 digits, no characters, no special characters
 // what to do when we have good user input
+
 fetchData();
 //what happens when not good data?
+
+
 showError();
 }
-
+```
 # Object-Oriented Programming
-END
+* Drawing the object
+
+|"Enter Zip Code"|        |  Click for weather|
+
+|        City        |
+|    "Lexington"     |
+
+|    Temperature     |
+|     32F |   0C     |
+
+|      Condition     |
+|      Rainy         |
+
+|     Other Data     |
+
+
+
+``` javascript
+// grab data from Axios API
+CurrentWeatherData = [ "city name", Temperature, Condition] // how do I fetch the data? from the FetchData function? is this State?
+Let weatherDisplay = {
+City: FetchData.city
+Temperature: FetchData.temperature
+Condition: FetchData.condition
+
+}
