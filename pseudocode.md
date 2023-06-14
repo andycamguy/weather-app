@@ -4,7 +4,7 @@
 
 # INIT -  variables, functions, steps, assumptions, known-knowns, known- unknowns
 ## Ask a question
-* how do I fetch the location data(openweatherdata.org
+* how do I fetch the location data?(openweatherdata.org)
 -    Assumption: user has the appropriate devices to operate the UI
 * API key =
 - to store data into local storage - stretch goal
@@ -33,7 +33,7 @@ zipcode: "40390", // is it a zipcode?, what about user error?
       requestData:
       resultData: ...
       requestTime: ...
-      
+      ]
 # PresentUI - header and the body
 * Atomic Design: what are your atoms, molecules, and organisms?
 * Waiting for UserInput
