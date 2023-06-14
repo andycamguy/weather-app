@@ -48,7 +48,7 @@ catch{
 }
 RenderUI();
 {
+   setState();
   displayTemperature();
-  setState();
  //sees the data from API; updates state and invokes the setState 
 }
