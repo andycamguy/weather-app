@@ -7,19 +7,24 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <style src="style.css"> </style>
 </head>
 
 <body>
-<!--making the input and the button-->
-<div class ="form-group text-center" >
-  <div class ="row">
-  
-  <label>enter the zip code</label>
-  <div>
-  <input> </input>
+  <!--making the input and the button-->
+  <div class="form-group text-center">
+    <div class="row">
+      <div class="col">
+        <label>enter the zip code</label>
+        <div>
+          <input> </input>
+        </div>
+      </div>
+      <div class="col">
+        <button id="fetch" onclick="fetchData()"> button goes here</button>
+      </div>
+    </div>
   </div>
-  </div>
-</div>
   <!-- structure for the grid-->
   <div class="border text-center">
     <div class="row" id="city">
