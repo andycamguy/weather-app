@@ -1,5 +1,6 @@
-import axios from 'axios';
+const axios = require('axios');
 currentWeatherData = []; // this is our definition of state.
+
 function fetchData() // our render function
 {
 //send the api key and user input to the api
@@ -21,31 +22,30 @@ function setState()
 function checkUserInput() 
 {
   // validate the user input to see if correct
-  let zip = document.getElementbyId("input") // !!!check the id of the input
+  // what happens when data is good? thats why we have the check user input function
+  let zip = document.getElementbyId("input") // !!!check the id of the input to make sure it is correct
   // make sure the textfield provides the input
-  try (zip.length == 5)
-  {
-    fetchData();
-    // what happens when data is good?
-    //input length is 5 digits, no characters, no special characters
-    // what to do when we have good user input
+  const regex = /[!@#$%^&*(),.?":{}|<>]/; // using the regular expression to toss out any and all special characters in the input
+  try {     //input length is 5 digits, no characters, no special characters
+    if (zip.length > 5) {
+      throw new Error('Input has more than 5 integers');
+    }
+    return false; // No error
+  } catch (error) {
+    return true; // Error occurred
   }
-  //input length is 5 digits, no characters, no special characters
-  // what to do when we have good user input
+    if (regex.test(input)) {
+    throw new Error('Input contains special characters');
+    }
+      fetchData();
+    // what to do when we have good user input
+
 catch{
 //what happens when not good data?   
-showError();
+
 }
   RenderUI();
 }
-function showError();
-{
- //case error: if there are special characters: catch and display it must be a 5 digit number, no characters
- //case error: not a real zipcode: display not a real zip code
-  
-  break;
-}
-
 RenderUI();
 {
   displayTemperature();
