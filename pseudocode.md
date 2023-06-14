@@ -34,7 +34,7 @@ zipcode: "40390", // is it a zipcode?, what about user error?
       resultData: ...
       requestTime: ...
       
-#PresentUI - header and the body
+# PresentUI - header and the body
 * Atomic Design: what are your atoms, molecules, and organisms?
 * Waiting for UserInput
 * Received User data // modify the UI to display an error or the weather data
@@ -60,27 +60,37 @@ function fetchData() // our render function
 {
 //send the api key and user input to the api
 
-//Axios: where do we get the Data? What do we send to the API
+//Axios: where do we get the Data? What do we send to the API? How to bypass any potential costs? 
+// how to defensively code to bypass unnecessarily costs?
 }
 
 function setState()
 {
-
+//how do we set the state of based on the data received from the API?
+      
 }
 
 
 function checkUserInput() 
 {
-// validate the user input to see if corrent
+// validate the user input to see if correctt
 // make sure the textfield provides the input
 //input length is 5 digits, no characters, no special characters
 // what to do when we have good user input
 
 fetchData();
 //what happens when not good data?
-
-
+     
 showError();
+// what happens when data is good?
+
+  RenderUI();
+}
+
+function RenderUI()
+{
+ //sees the data from API; updates state and invokes the setState     
+      
 }
 ```
 # Object-Oriented Programming
