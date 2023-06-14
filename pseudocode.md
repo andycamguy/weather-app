@@ -6,7 +6,7 @@
 ## Ask a question
 * how do I fetch the location data?(openweatherdata.org)
 -    Assumption: user has the appropriate devices to operate the UI
-* API key =
+* API key = 80c0e2a64d9180528d20e2f53ad95081 
 - to store data into local storage - stretch goal
 -   how does the API engine work?
 * How is the data viewed( in a graph?) and what other data do I need to show?
