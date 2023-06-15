@@ -1,12 +1,12 @@
 const API_Key = "80c0e2a64d9180528d20e2f53ad95081";
 const API_URL = "https://api.openweathermap.org";
 const API_PATH = "/data/2.5/weather";
-const ZIP_CODE = "40390";
+//const ZIP_CODE = "40390";
 
 let currentWeatherData = null;
 
-window.addEventListener("load", init);
 
+window.addEventListener("click", checkUserInput)
 async function init() {
   console.log('hello world');
   try {
@@ -17,16 +17,23 @@ async function init() {
     console.error('Error:', error);
   }
 }
+async function convertTemperature()
+{
+  //data comes in degrees Kelvin
+  //(0K − 273.15) × 9/5 + 32 converts to Fahrenheit
+  //0K − 273 converts to Celsius
 
+}
 async function getWeatherData(zipcode) {
   try {
     const options = {
       params: {
         zip: zipcode,
         appid: API_Key
-      }
+      },
+      baseURL: API_URL
     };
-    const response = await axios.get(API_URL + API_PATH, options);
+    const response = await axios.get(API_PATH, options);
     return response.data;
   } catch (error) {
     throw new Error('Failed to fetch weather data');
@@ -35,14 +42,15 @@ async function getWeatherData(zipcode) {
 
 // Additional function to check user input and trigger the weather data retrieval
 function checkUserInput() {
+  
   console.log('the button is working');
-  const input = document.getElementById('input').value;
+  const input = document.getElementById('zipcode').value;
   const regex = /^[0-9]{5}$/; // Use a regex to match exactly 5 digits
-
+  const zipcode = input;
   if (!regex.test(input)) {
     throw new Error('Input is invalid');
   }
-
-  const zipcode = input;
-  getWeatherData(zipcode);
+  else{
+  getWeatherData();
+  }
 }
