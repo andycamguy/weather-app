@@ -1,8 +1,48 @@
 const axios = require('axios');
-currentWeatherData = []; // this is our definition of state.
+const API_Key = "80c0e2a64d9180528d20e2f53ad95081";
+const API_URL = "https://api.openweathermap.org";
+let API_PATH ="/data/2.5/weather";
+const ZIP_CODE = [40390];
+currentWeatherData = null; // this is our definition of state.
+window.addEventListener("load",init);
 
-function fetchData() // our render function
+async function init()
 {
+  console.log('hello world');
+  let currentWeatherData = getWeatherData(ZIP_CODE);
+}
+async function getWeatherData(zipcode) // our render function
+{
+<<<<<<< dev
+//send the api key and user input to the api
+try
+{
+  // trap any errors here on the backend, 500 400 is logic related
+  //200 successful call
+  // create the options object which is our parameters for the API call
+  let options =
+      {
+        params{
+        baseurl:API_URL,
+        zip:zipcode,
+        appid:API_Key
+      }
+        
+      };
+  axios.get(API_PATH, options)
+}
+  catch(error)
+  {
+    
+  }
+//Axios: where do we get the Data? What do we send to the API? How to bypass any potential costs? 
+// how to defensively code to bypass unnecessarily costs?
+}
+
+function setState()
+{
+//how do we set the state of based on the data received from the API?
+=======
   //send the api key and user input to the api
 
   //Axios: where do we get the Data? What do we send to the API? How to bypass any potential costs? 
@@ -14,6 +54,7 @@ function displayTemperature(num) {
 }
 function setState() {
   //how do we set the state of based on the data received from the API?
+>>>>>>> main
   currentWeatherData = // axios.(something) //saves the data from axios
   
       
@@ -39,7 +80,21 @@ function checkUserInput() {
     return true; // Error occurred
     
   }
+<<<<<<< dev
+    if (regex.test(input)) {
+    throw new Error('Input contains special characters');
+    }
+      getWeatherData();
+    // what to do when we have good user input
+
+catch{
+//what happens when not good data?   
+
+}
+  RenderUI();
+=======
  
+>>>>>>> main
 }
 RenderUI();
 {
