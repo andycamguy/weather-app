@@ -3,11 +3,12 @@ const API_URL = "https://api.openweathermap.org";
 const API_PATH = "/data/2.5/weather";
 //const ZIP_CODE = "40390";
 
-let currentWeatherData = null;
+//let currentWeatherData = null;
+let currentzipcode = null;
+var fetch = document.getElementById("fetch");
 
-
-window.addEventListener("click", checkUserInput)
-async function init() {
+fetch.addEventListener("click", checkUserInput) //define the button first
+/*async function init() {
   console.log('hello world');
   try {
     currentWeatherData = await getWeatherData(ZIP_CODE);
@@ -17,6 +18,7 @@ async function init() {
     console.error('Error:', error);
   }
 }
+*/
 async function convertTemperature()
 {
   //data comes in degrees Kelvin
@@ -24,8 +26,10 @@ async function convertTemperature()
   //0K − 273 converts to Celsius
 
 }
-async function getWeatherData(zipcode) {
+async function getWeatherData(event) {
   try {
+    //go get the data
+    zipcode = document.getElementById("zipcode").value
     const options = {
       params: {
         zip: zipcode,
@@ -34,7 +38,12 @@ async function getWeatherData(zipcode) {
       baseURL: API_URL
     };
     const response = await axios.get(API_PATH, options);
-    return response.data;
+    
+    axios.then(function(response)
+    {
+     return response.data; 
+      
+    })
   } catch (error) {
     throw new Error('Failed to fetch weather data');
   }
