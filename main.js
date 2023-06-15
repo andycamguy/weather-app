@@ -3,7 +3,7 @@ const API_Key = "80c0e2a64d9180528d20e2f53ad95081";
 const API_URL = "https://api.openweathermap.org";
 let API_PATH ="/data/2.5/weather";
 const ZIP_CODE = [40390];
-currentWeatherData = []; // this is our definition of state.
+currentWeatherData = null; // this is our definition of state.
 window.addEventListener("load",init);
 
 async function init()
@@ -11,7 +11,7 @@ async function init()
   console.log('hello world');
   let currentWeatherData = getWeatherData(ZIP_CODE);
 }
-function getWeatherData(zipcode) // our render function
+async function getWeatherData(zipcode) // our render function
 {
 //send the api key and user input to the api
 try
