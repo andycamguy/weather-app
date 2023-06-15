@@ -1,5 +1,3 @@
-
-
 const API_Key = "80c0e2a64d9180528d20e2f53ad95081";
 const API_URL = "https://api.openweathermap.org";
 const API_PATH = "/data/2.5/weather";
@@ -37,8 +35,8 @@ async function getWeatherData(zipcode) {
 
 // Additional function to check user input and trigger the weather data retrieval
 function checkUserInput() {
-  console.log('the button is working')
-  const input = document.getElementById("fetch").value;
+  console.log('the button is working');
+  const input = document.getElementById('input').value;
   const regex = /^[0-9]{5}$/; // Use a regex to match exactly 5 digits
 
   if (!regex.test(input)) {
@@ -48,4 +46,3 @@ function checkUserInput() {
   const zipcode = input;
   getWeatherData(zipcode);
 }
-

@@ -17,11 +17,12 @@
       <div class="col">
         <label>Enter the zip code</label>
         <div>
-          <input id="input" pattern="[0-9]{5}" oninput="checkUserInput">
+          <input id="zipcode" pattern="[0-9]{5}" onclick="checkUserInput">
+          <button id="fetch" onclick="checkUserInput()">Get Weather</button>
         </div>
       </div>
       <div class="col">
-        <button id="fetch" onclick="checkUserInput()">Get Weather</button>
+       
       </div>
     </div>
   </div>
