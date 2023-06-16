@@ -1,45 +1,67 @@
 const API_Key = "80c0e2a64d9180528d20e2f53ad95081";
 const API_URL = "https://api.openweathermap.org";
 const API_PATH = "/data/2.5/weather";
-//const ZIP_CODE = "40390";
 
-//let currentWeatherData = null;
 let currentzipcode = null;
-var fetch = document.getElementById("fetch");
+const fetchButton = document.getElementById("fetch");
 
-fetch.addEventListener("click", checkUserInput) //define the button first dummy
-/*async function init() {
-  console.log('hello world');
+fetchButton.addEventListener("click", checkUserInput);
+
+async function displayTemperature() {
   try {
-    currentWeatherData = await getWeatherData(ZIP_CODE);
-    console.log(currentWeatherData);
-    // RenderUI(currentWeatherData); // Call your render function here
+    const celsiusElement = document.getElementById("Celsius");
+    const fahrenheitElement = document.getElementById("Fahrenheit");
+
+    const options = {
+      params: {
+        zip: currentzipcode,
+        appid: API_Key
+      },
+      baseURL: API_URL
+    };
+
+    const response = await axios.get(API_PATH, options);
+    const responseData = response.data;
+
+    const temperature = responseData.main.temp;
+    const celsiusTemperature = temperature - 273.15;
+    const fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+
+    celsiusElement.textContent = `Temperature in Celsius: ${celsiusTemperature.toFixed(2)}°C`;
+    fahrenheitElement.textContent = `Temperature in Fahrenheit: ${fahrenheitTemperature.toFixed(2)}°F`;
   } catch (error) {
-    console.error('Error:', error);
+    console.error(error);
   }
 }
-*/
-try {
-  const celsiusElement = document.getElementById("Celsius");
-  const fahrenheitElement = document.getElementById("Fahrenheit");
-
-  // Make the Celsius API call
-  const celsiusResponse = await axios.get(API_URL);
-  const celsiusData = celsiusResponse.data;
-  const celsiusTemperature = celsiusData.temperature;
-  celsiusElement.textContent = `Temperature in Celsius: ${celsiusTemperature}`;
-
-  // Convert to Fahrenheit
-  const fahrenheitTemperature = (celsiusTemperature - 273.15) * 9 / 5 + 32;
-  fahrenheitElement.textContent = `Temperature in Fahrenheit: ${fahrenheitTemperature}`;
-} catch (error) {
-  console.error(error);
-}
-
-async function getWeatherData(event) {
+async function displayCity(responseData) {
   try {
-    //go get the data
-    zipcode = document.getElementById("zipcode").value
+    const cityElement = document.getElementById("cityName");
+    const cityData = responseData.name;
+    cityElement.textContent = cityData;
+  } catch (error) {
+    console.error(error);
+  }
+}
+async function weatherConditions(responseData) {
+  try {
+    const conditionsElement = document.getElementById("conditions");
+    const weatherData = responseData.weather;
+
+    if (weatherData && weatherData.length > 0) {
+      const weatherCondition = weatherData[0].description;
+      conditionsElement.textContent = `Weather Conditions: ${weatherCondition}`;
+    } else {
+      conditionsElement.textContent = "Weather conditions not available";
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+async function getWeatherData() {
+  try {
+    const zipcode = document.getElementById("zipcode").value;
+    currentzipcode = zipcode;
+
     const options = {
       params: {
         zip: zipcode,
@@ -47,29 +69,30 @@ async function getWeatherData(event) {
       },
       baseURL: API_URL
     };
+
     const response = await axios.get(API_PATH, options);
-    
-    axios.then(function(response)
-    {
-     return response.data; 
-      
-    })
+    const responseData = response.data;
+
+    return responseData;
   } catch (error) {
     throw new Error('Failed to fetch weather data');
   }
 }
 
-// Additional function to check user input and trigger the weather data retrieval
 function checkUserInput() {
-  
-  console.log('the button is working');
   const input = document.getElementById('zipcode').value;
-  const regex = /^[0-9]{5}$/; // Use a regex to match exactly 5 digits
+  const regex = /^[0-9]{5}$/;
   const zipcode = input;
+
   if (!regex.test(input)) {
     throw new Error('Input is invalid');
-  }
-  else{
-  getWeatherData();
-  }
+  } else {
+    getWeatherData()
+    .then(responseData => {
+      displayTemperature(responseData);
+      displayCity(responseData);
+      weatherConditions(responseData);
+    })
+    .catch(error => console.error(error));
+}
 }
