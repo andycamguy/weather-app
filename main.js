@@ -42,6 +42,17 @@ async function displayCity(responseData) {
     console.error(error);
   }
 }
+/*async function otherInfo(responseData)
+{
+  try {
+    const otherElement = document.getElementById("otherInfo");
+    const otherData = responseData.name;
+    cityElement.textContent = otherData;
+  } catch (error) {
+    console.error(error);
+  }
+}
+*/
 async function weatherConditions(responseData) {
   try {
     const conditionsElement = document.getElementById("conditions");
