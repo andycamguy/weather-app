@@ -7,7 +7,7 @@ const API_PATH = "/data/2.5/weather";
 let currentzipcode = null;
 var fetch = document.getElementById("fetch");
 
-fetch.addEventListener("click", checkUserInput) //define the button first
+fetch.addEventListener("click", checkUserInput) //define the button first dummy
 /*async function init() {
   console.log('hello world');
   try {
@@ -19,13 +19,23 @@ fetch.addEventListener("click", checkUserInput) //define the button first
   }
 }
 */
-async function convertTemperature()
-{
-  //data comes in degrees Kelvin
-  //(0K − 273.15) × 9/5 + 32 converts to Fahrenheit
-  //0K − 273 converts to Celsius
+try {
+  const celsiusElement = document.getElementById("Celsius");
+  const fahrenheitElement = document.getElementById("Fahrenheit");
 
+  // Make the Celsius API call
+  const celsiusResponse = await axios.get(API_URL);
+  const celsiusData = celsiusResponse.data;
+  const celsiusTemperature = celsiusData.temperature;
+  celsiusElement.textContent = `Temperature in Celsius: ${celsiusTemperature}`;
+
+  // Convert to Fahrenheit
+  const fahrenheitTemperature = (celsiusTemperature - 273.15) * 9 / 5 + 32;
+  fahrenheitElement.textContent = `Temperature in Fahrenheit: ${fahrenheitTemperature}`;
+} catch (error) {
+  console.error(error);
 }
+
 async function getWeatherData(event) {
   try {
     //go get the data
